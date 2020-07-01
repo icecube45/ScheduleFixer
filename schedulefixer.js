@@ -88,30 +88,16 @@ $("html").bind("DOMNodeInserted",function(e){
             }
             else{
                 cells[4].textContent = sectionData[sectionNum];
-                $.ajax({
-                    method: "GET",
-                    dataType: "json",
-                    async: false,
-                    crossDomain: true,
-                    url: 'https://api.allorigins.win/get?url=' + encodeURIComponent('https://polyratings.com/list.html'),
-                    success: function(data){
-                        $data = $(data.contents);
+                var prof = sectionData[sectionNum].replace(/\s+/g,'')
+                if(polyRatings[prof]){
+                    $(cells[4]).wrap('<a href="https://polyratings.com'+polyRatings[prof].href+'" />');
+                    cells[4].style.borderStyle = "solid";
+                    cells[4].style.borderColor = getColor(1-polyRatings[prof].rating/5.0);
+                    cells[4].style.borderWidth = "5px";
+                    $(cells[4]).parent().css('color', "#fff");
+                    cells[4].textContent = cells[4].textContent+"  "+polyRatings[prof].rating+"★"+"  "+polyRatings[prof].reviewCount;
 
-                        var rating = parseFloat($data.find('[data-search="'+sectionData[sectionNum].replace(/\s+/g,'')+'"]').find('span.pull-right')[0].textContent.replace(/\s+/g,'').replace(/(\r\n|\n|\r)/gm,""));
-                        var reviewCount = $data.find('[data-search="'+sectionData[sectionNum].replace(/\s+/g,'')+'"]').find('span.pull-right')[2].textContent;
-                        cells[4].textContent = cells[4].textContent+"  "+rating+"★"+"  "+reviewCount;
-                        console.log($data.find('[data-search="'+sectionData[sectionNum].replace(/\s+/g,'')+'"]'));
-                        $(cells[4]).wrap('<a href="https://polyratings.com'+$data.find('[data-search="'+sectionData[sectionNum].replace(/\s+/g,'')+'"]')[0].pathname+'" />');
-                        cells[4].style.borderStyle = "solid";
-                        cells[4].style.borderColor = getColor(1-rating/5.0);
-                        cells[4].style.borderWidth = "5px";
-                        console.log($(cells[4]).parent())
-                        $(cells[4]).parent().css('color', "#fff");
-                        
-
-                    }
-                    
-                  });
+                }
 
             }
         });
@@ -135,11 +121,33 @@ observer.observe(document, {
     subtree: true,
     attributes: true
 });
+var polyRatings = {};
 
+$.ajax({
+    method: "GET",
+    dataType: "json",
+    async: true,
+    crossDomain: true,
+    url: 'https://api.allorigins.win/get?url=' + encodeURIComponent('https://polyratings.com/list.html'),
+    success: function(data){
+        $data = $(data.contents);
+        $data.find('[data-search]').each(function(index, element){
+            var prof = $(this).attr("data-search");
+            if(!polyRatings[prof]) polyRatings[prof] = {};
+            polyRatings[prof].rating = parseFloat($(this).find('span.pull-right')[0].textContent.replace(/\s+/g,'').replace(/(\r\n|\n|\r)/gm,""));
+            polyRatings[prof].href = $(this)[0].pathname;
+            polyRatings[prof].reviewCount = $(this).find('span.pull-right')[2].textContent;
+        });
+    },
+    error: function(xhr, error, errorText){
+        console.error("Polyratings scrape failed");
+    }
+    
+  });
 
 
                   
-console.log("Schedule Fixer Loaded,\ntime to fix this mistake.")
+console.log("Schedule Fixer Loaded")
 
 
 var sectionData = {

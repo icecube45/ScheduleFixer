@@ -29,3 +29,22 @@ Firefox addon to overhaul Cal Poly's Schedule Builder
 
 
 
+
+#### Changelog:
+
+----
+
+###### v1.1
+
+* Only scrapes polyratings at page load, dramatic speed increase with this.
+* No longer tries to recolor degree planner
+
+###### v1
+
+* Initial release
+
+
+
+
+
+

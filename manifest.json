@@ -9,7 +9,7 @@
   
     "content_scripts": [
       {
-        "matches": ["*://*.pscs.calpoly.edu/psc/CSLOPRD/EMPLOYEE/SA/s/*" ],
+        "matches": ["*://*.pscs.calpoly.edu/psc/CSLOPRD/EMPLOYEE/SA/s/WEBLIB_H_SB*" ],
         "js": ["assets/js/jquery-3.5.1.min.js", "schedulefixer.js"],
         "run_at": "document_start",
         "all_frames": true
