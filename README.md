@@ -24,7 +24,7 @@ Firefox addon to overhaul Cal Poly's Schedule Builder
 
 # Installation Instructions:
 
-[Download the latest release and install in firefox](https://github.com/icecube45/ScheduleFixer/releases/download/v0.1/schedulefixer.xpi)
+[Download the latest release and install in firefox](https://github.com/icecube45/ScheduleFixer/releases/download/v0.11/schedulefixer.xpi)
 
 
 
@@ -34,12 +34,12 @@ Firefox addon to overhaul Cal Poly's Schedule Builder
 
 ----
 
-###### v1.1
+###### v0.11
 
 * Only scrapes polyratings at page load, dramatic speed increase with this.
 * No longer tries to recolor degree planner
 
-###### v1
+###### v0.1
 
 * Initial release
 
