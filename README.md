@@ -24,7 +24,7 @@ Firefox addon to overhaul Cal Poly's Schedule Builder
 
 # Installation Instructions:
 
-[Download the latest release and install in firefox](/icecube45/ScheduleFixer/releases/latest/download/schedulefixer.xpi)
+[Download the latest release and install in firefox](https://github.com/icecube45/ScheduleFixer/releases/download/v0.1/schedulefixer.xpi)
 
 
 
