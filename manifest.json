@@ -1,0 +1,22 @@
+{
+
+    "manifest_version": 2,
+    "name": "ScheduleFixer",
+    "version": "0.1",
+  
+    "description": "Attempt to make Cal Poly's Schedule Builder more usable ",
+  
+  
+    "content_scripts": [
+      {
+        "matches": ["*://*.pscs.calpoly.edu/psc/CSLOPRD/EMPLOYEE/SA/s/*" ],
+        "js": ["assets/js/jquery-3.5.1.min.js", "schedulefixer.js"],
+        "run_at": "document_start",
+        "all_frames": true
+      }
+    ],
+    "permissions": [
+        "*://api.allorigins.win/*"
+      ]
+  
+  }
